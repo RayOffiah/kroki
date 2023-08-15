@@ -4,33 +4,7 @@ import io.kroki.server.action.Commander;
 import io.kroki.server.error.ErrorHandler;
 import io.kroki.server.error.InvalidRequestHandler;
 import io.kroki.server.log.Logging;
-import io.kroki.server.service.Blockdiag;
-import io.kroki.server.service.Bpmn;
-import io.kroki.server.service.Bytefield;
-import io.kroki.server.service.D2;
-import io.kroki.server.service.TikZ;
-import io.kroki.server.service.Dbml;
-import io.kroki.server.service.DiagramRegistry;
-import io.kroki.server.service.DiagramRest;
-import io.kroki.server.service.Diagramsnet;
-import io.kroki.server.service.Ditaa;
-import io.kroki.server.service.Erd;
-import io.kroki.server.service.Excalidraw;
-import io.kroki.server.service.Graphviz;
-import io.kroki.server.service.HealthHandler;
-import io.kroki.server.service.HelloHandler;
-import io.kroki.server.service.Mermaid;
-import io.kroki.server.service.Nomnoml;
-import io.kroki.server.service.Pikchr;
-import io.kroki.server.service.Plantuml;
-import io.kroki.server.service.ServiceVersion;
-import io.kroki.server.service.Structurizr;
-import io.kroki.server.service.Svgbob;
-import io.kroki.server.service.Symbolator;
-import io.kroki.server.service.Umlet;
-import io.kroki.server.service.Vega;
-import io.kroki.server.service.Wavedrom;
-import io.kroki.server.service.Wireviz;
+import io.kroki.server.service.*;
 import io.vertx.config.ConfigRetriever;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.AsyncResult;
@@ -144,6 +118,7 @@ public class Server extends AbstractVerticle {
     registry.register(new TikZ(vertx, config, commander), "tikz");
     registry.register(new Dbml(vertx, config, commander), "dbml");
     registry.register(new Wireviz(vertx, config), "wireviz");
+    registry.register(new RailRoad(vertx, config), "railroad");
 
     router.post("/")
       .handler(bodyHandler)
